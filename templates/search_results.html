@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <!-- query_interface/templates/query_interface/search_results.html -->
+        {% block content %}
+        <h2>Search Results</h2>
+
+        <form method="get">
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+<!--        <ul>-->
+<!--            {% for log in logs %}-->
+<!--            <li>{{ log.timestamp }} - {{ log.message }}</li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+        <table>
+            <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Level</th>
+                <th>Message</th>
+        <!-- Add more table headers for additional fields if needed -->
+            </tr>
+            </thead>
+            <tbody>
+            {% if logs %}
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.timestamp }}</td>
+                <td>{{ log.level }}</td>
+                <td>{{ log.message }}</td>
+            <!-- Add more table cells for additional fields if needed -->
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">No logs found.</td>
+          <!-- Adjust the colspan based on the number of columns in your table -->
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        {% endblock %}
+    </div>
+</body>
+</html>
